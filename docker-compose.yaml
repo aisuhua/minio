@@ -1,0 +1,13 @@
+services:
+  minio:
+    container_name: minio
+    image: quay.io/minio/minio:RELEASE.2025-09-07T16-13-09Z
+    command: server /data --address ":19000" --console-address ":19001"
+    ports:
+      - 19000:19000
+      - 19001:19001
+    volumes:
+      - ./data:/data
+    env_file:
+      - .env
+    restart: unless-stopped
